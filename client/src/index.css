@@ -1,0 +1,212 @@
+/* ─── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ─── Tokens ─────────────────────────────────────────────── */
+:root {
+  --pink:    #FF2E7E;
+  --black:   #111111;
+  --white:   #FFFFFF;
+  --bg-out:  #F7F7F8;
+  --lavender:#ECE9FE;
+  --mint:    #D8F5E5;
+  --yellow:  #FFE875;
+  --peach:   #FFE4D6;
+  --shadow:  4px 4px 0px var(--black);
+  --radius:  24px;
+  --font:    'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* ─── Base ───────────────────────────────────────────────── */
+html, body {
+  height: 100%;
+  font-family: var(--font);
+  background: var(--bg-out);
+  color: var(--black);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: var(--font);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img { display: block; }
+
+/* ─── App shell ──────────────────────────────────────────── */
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100dvh;
+  background: var(--bg-out);
+}
+
+.app-shell {
+  width: 100%;
+  max-width: 440px;
+  min-height: 100dvh;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* subtle desktop shadow */
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 8px 0 32px rgba(0,0,0,0.04), -8px 0 32px rgba(0,0,0,0.04);
+}
+
+/* ─── Page area (above TabBar) ───────────────────────────── */
+.page-area {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 72px; /* height of tab bar */
+}
+
+/* ─── Tab Bar ────────────────────────────────────────────── */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 440px;
+  height: 68px;
+  background: var(--white);
+  border-top: 2px solid var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 100;
+  padding: 0 24px;
+  gap: 12px;
+}
+
+.tab-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 12px;
+  border-radius: 16px;
+  transition: background 0.15s;
+  color: #9CA3AF;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.tab-btn.active {
+  background: #FFF0F6;
+  color: var(--pink);
+  border: 2px solid var(--pink);
+}
+
+.tab-btn .tab-icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* ─── Wordmark ───────────────────────────────────────────── */
+.wordmark {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--black);
+  letter-spacing: -1px;
+}
+.wordmark span { color: var(--pink); }
+
+/* ─── Neo-brutalist card ─────────────────────────────────── */
+.neo-card {
+  background: var(--white);
+  border: 2px solid var(--black);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* ─── Primary button ─────────────────────────────────────── */
+.btn-primary {
+  background: var(--pink);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 28px;
+  border-radius: 50px;
+  border: 2px solid var(--black);
+  box-shadow: var(--shadow);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.btn-primary:hover  { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--black); }
+.btn-primary:active { transform: translate(2px,2px);  box-shadow: 2px 2px 0 var(--black); }
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--black);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 28px;
+  border-radius: 50px;
+  border: 2px solid var(--black);
+  box-shadow: var(--shadow);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.btn-secondary:hover  { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--black); }
+.btn-secondary:active { transform: translate(2px,2px);   box-shadow: 2px 2px 0 var(--black); }
+
+/* ─── Pill ───────────────────────────────────────────────── */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1.5px solid var(--black);
+  white-space: nowrap;
+}
+.pill-lavender { background: var(--lavender); }
+.pill-mint     { background: var(--mint); }
+.pill-yellow   { background: var(--yellow); }
+.pill-peach    { background: var(--peach); }
+.pill-pink     { background: var(--pink); color: #fff; }
+
+/* ─── Swipe stamp overlays ───────────────────────────────── */
+.stamp {
+  position: absolute;
+  top: 50px;
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  padding: 8px 18px;
+  border-radius: 12px;
+  border: 4px solid currentColor;
+  transform: rotate(-15deg);
+  pointer-events: none;
+  z-index: 10;
+}
+.stamp-like { color: #22c55e; left: 24px; transform: rotate(-15deg); }
+.stamp-nope { color: #ef4444; right: 24px; transform: rotate(15deg); }
+
+/* ─── Toast ──────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 86px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--black);
+  color: var(--white);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 999;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
